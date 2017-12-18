@@ -44,7 +44,9 @@ export default {
       views: Views,
       view_inx: 0,
       actual_view: Views[0],
-      messages: JSON.parse(this.$localStorage.get('messages'))
+      messages: JSON.parse(this.$localStorage.get('messages')).sort((a, b) => {
+        return a.date < b.date
+      })
     }
   },
   created () {
@@ -57,6 +59,9 @@ export default {
     },
     newMessage () {
       this.messages = this.$localStorage.get('messages')
+      this.messages = this.messages.sort((a, b) => {
+        return a.date < b.date
+      })
     }
   }
 }
