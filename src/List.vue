@@ -16,9 +16,10 @@
 
 <script>
   export default {
+    props: ['messages'],
     data () {
       return {
-        messages: [{name: 'Rudy', email: 'rudolfcicko2011@gmail.com', message: 'Hello World', date: new Date()}]
+        messages: this.messages
       }
     },
   }

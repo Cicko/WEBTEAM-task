@@ -7,12 +7,12 @@
         <v-layout row wrap>
           <v-flex v-if="view_inx === 0 || view_inx === 1"
             :class="view_inx === 0 ? 'xs6' : 'xs12'">
-            <my-form class="mx-5">
+            <my-form @onNewMessage="newMessage" class="mx-5">
             </my-form>
           </v-flex>
           <v-flex v-if="view_inx === 0 || view_inx === 2"
             :class="view_inx === 0 ? 'xs6' : 'xs12'">
-            <my-list class="mx-5">
+            <my-list :messages="messages" class="mx-5">
             </my-list>
           </v-flex>
         </v-layout>
@@ -44,6 +44,7 @@ export default {
       views: Views,
       view_inx: 0,
       actual_view: Views[0],
+      messages: JSON.parse(this.$localStorage.get('messages'))
     }
   },
   created () {
@@ -54,6 +55,9 @@ export default {
       this.view_inx = ++this.view_inx % Views.length
       this.actual_view = Views[this.view_inx]
     },
+    newMessage () {
+      this.messages = this.$localStorage.get('messages')
+    }
   }
 }
 </script>

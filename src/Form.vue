@@ -64,6 +64,7 @@
           messages = [message]
         }
         this.$localStorage.set('messages', messages)
+        this.$emit('onNewMessage')
       },
       clear () {
         this.$v.$reset()
