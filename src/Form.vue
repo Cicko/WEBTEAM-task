@@ -51,6 +51,19 @@
     methods: {
       submit () {
         this.$v.$touch()
+        const message = {
+          name: this.name,
+          email: this.email,
+          message: this.message,
+          date: new Date()
+        }
+        var messages = this.$localStorage.get('messages')
+        if (messages) {
+          messages.push(message)
+        } else {
+          messages = [message]
+        }
+        this.$localStorage.set('messages', messages)
       },
       clear () {
         this.$v.$reset()
