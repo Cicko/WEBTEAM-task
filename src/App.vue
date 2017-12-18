@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-toolbar fixed app>
+      <v-toolbar-title>Beautiful WEBTEAM task</v-toolbar-title>
     </v-toolbar>
     <v-content>
       <v-container grid-list-md text-xs-center>
@@ -44,13 +45,16 @@ export default {
       views: Views,
       view_inx: 0,
       actual_view: Views[0],
-      messages: JSON.parse(this.$localStorage.get('messages')).sort((a, b) => {
-        return a.date < b.date
-      })
+      messages: this.$localStorage.get('messages') !== 'undefined' ? JSON.parse(this.$localStorage.get('messages')) : []
     }
   },
   created () {
     this.$localStorage.addProperty('messages', Array)
+    if (this.messages.length > 0) {
+      this.messages = this.messages.sort((a, b) => {
+        return a.date < b.date
+      })
+    }
   },
   methods: {
     switchView () {
