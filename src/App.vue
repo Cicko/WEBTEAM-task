@@ -46,6 +46,9 @@ export default {
       actual_view: Views[0],
     }
   },
+  created () {
+    this.$localStorage.addProperty('messages', Array)
+  },
   methods: {
     switchView () {
       this.view_inx = ++this.view_inx % Views.length
